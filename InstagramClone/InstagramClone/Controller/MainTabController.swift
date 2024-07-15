@@ -19,9 +19,10 @@ class MainTabController: UITabBarController {
     
     // MARK: Configure UI
     private func configureViewControllers() {
+        tabBar.isTranslucent = false
         view.backgroundColor = .white
         
-        let feed = templateNavController(unSelectedImage: UIImage(systemName: "house")!, selectedImage: UIImage(systemName: "house.fill")!, viewController: FeedController())
+        let feed = templateNavController(unSelectedImage: UIImage(systemName: "house")!, selectedImage: UIImage(systemName: "house.fill")!, viewController: FeedController(collectionViewLayout: UICollectionViewFlowLayout()))
         
         let search = templateNavController(unSelectedImage: UIImage(systemName: "magnifyingglass.circle")!, selectedImage: UIImage(systemName: "magnifyingglass.circle.fill")!, viewController: SearchController())
         
