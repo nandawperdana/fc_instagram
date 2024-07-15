@@ -21,6 +21,8 @@
 		E2EE8FA92C4553EB00296123 /* PostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2EE8FA82C4553EB00296123 /* PostController.swift */; };
 		E2EE8FAB2C4553F300296123 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2EE8FAA2C4553F300296123 /* NotificationController.swift */; };
 		E2EE8FAD2C4553FB00296123 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2EE8FAC2C4553FB00296123 /* ProfileController.swift */; };
+		E2EE8FAF2C4569CE00296123 /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2EE8FAE2C4569CE00296123 /* FeedCell.swift */; };
+		E2EE8FB12C456C3D00296123 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2EE8FB02C456C3D00296123 /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +61,8 @@
 		E2EE8FA82C4553EB00296123 /* PostController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostController.swift; sourceTree = "<group>"; };
 		E2EE8FAA2C4553F300296123 /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
 		E2EE8FAC2C4553FB00296123 /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
+		E2EE8FAE2C4569CE00296123 /* FeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
+		E2EE8FB02C456C3D00296123 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +149,7 @@
 		E29C04EA2C445998006E9883 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				E2EE8FB02C456C3D00296123 /* Extensions.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -179,6 +184,7 @@
 		E29C04EE2C4459A1006E9883 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				E2EE8FAE2C4569CE00296123 /* FeedCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -326,9 +332,11 @@
 				E29C04BD2C44597B006E9883 /* SceneDelegate.swift in Sources */,
 				E2EE8FAD2C4553FB00296123 /* ProfileController.swift in Sources */,
 				E29C04F12C4459F7006E9883 /* MainTabController.swift in Sources */,
+				E2EE8FB12C456C3D00296123 /* Extensions.swift in Sources */,
 				E2EE8FA92C4553EB00296123 /* PostController.swift in Sources */,
 				E2EE8FA72C4553E400296123 /* SearchController.swift in Sources */,
 				E2EE8FAB2C4553F300296123 /* NotificationController.swift in Sources */,
+				E2EE8FAF2C4569CE00296123 /* FeedCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
