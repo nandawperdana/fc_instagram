@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		E261FDFB2C46ACBA00F599DF /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E261FDFA2C46ACBA00F599DF /* CustomTextField.swift */; };
+		E261FDFD2C46BB3000F599DF /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E261FDFC2C46BB3000F599DF /* AuthenticationViewModel.swift */; };
 		E29C04BB2C44597B006E9883 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29C04BA2C44597B006E9883 /* AppDelegate.swift */; };
 		E29C04BD2C44597B006E9883 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29C04BC2C44597B006E9883 /* SceneDelegate.swift */; };
 		E29C04C22C44597B006E9883 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = E29C04C12C44597B006E9883 /* Base */; };
@@ -47,6 +48,7 @@
 
 /* Begin PBXFileReference section */
 		E261FDFA2C46ACBA00F599DF /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		E261FDFC2C46BB3000F599DF /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
 		E29C04B72C44597B006E9883 /* InstagramClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstagramClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E29C04BA2C44597B006E9883 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E29C04BC2C44597B006E9883 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -184,6 +186,7 @@
 		E29C04ED2C44599F006E9883 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				E261FDFC2C46BB3000F599DF /* AuthenticationViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -346,6 +349,7 @@
 			files = (
 				E261FDFB2C46ACBA00F599DF /* CustomTextField.swift in Sources */,
 				E2EE8FB42C45791E00296123 /* LoginController.swift in Sources */,
+				E261FDFD2C46BB3000F599DF /* AuthenticationViewModel.swift in Sources */,
 				E29C04BB2C44597B006E9883 /* AppDelegate.swift in Sources */,
 				E2EE8FA52C4553D600296123 /* FeedController.swift in Sources */,
 				E29C04BD2C44597B006E9883 /* SceneDelegate.swift in Sources */,
