@@ -16,13 +16,13 @@ class LoginController: UIViewController {
     }()
     
     private let emailTextField: UITextField = {
-        let tf = UITextField()
+        let tf = CustomTextField(placeholder: "email")
         tf.keyboardType = .emailAddress
         return tf
     }()
     
     private let passwordTextField: UITextField = {
-        let tf = UITextField()
+        let tf = CustomTextField(placeholder: "password")
         tf.isSecureTextEntry = true
         return tf
     }()
@@ -37,6 +37,13 @@ class LoginController: UIViewController {
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
         button.isEnabled = true
         button.addTarget(self, action: #selector(onTapLogin), for: .touchUpInside)
+        return button
+    }()
+    
+    private let dontHaveAccountButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.attributedTitle(firstPart: "Don't have and account? ", secondPart: "Sign Up")
+        button.addTarget(self, action: #selector(onTapRegister), for: .touchUpInside)
         return button
     }()
     
@@ -64,11 +71,19 @@ class LoginController: UIViewController {
         stack.spacing = 20
         
         view.addSubview(stack)
-        stack.anchor(top: iconImage.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 32, paddingLeft: 16, paddingRight: 16)
+        stack.anchor(top: iconImage.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 64, paddingLeft: 16, paddingRight: 16)
+        
+        view.addSubview(dontHaveAccountButton)
+        dontHaveAccountButton.centerX(inView: view)
+        dontHaveAccountButton.anchor(bottom: view.safeAreaLayoutGuide.bottomAnchor)
     }
     
     // MARK: Actions
     @objc func onTapLogin() {
-        print("onTpaLogin")
+        print("onTapLogin")
+    }
+    
+    @objc func onTapRegister() {
+        print("onTapRegister")
     }
 }
