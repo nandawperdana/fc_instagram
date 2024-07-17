@@ -106,7 +106,14 @@ class RegistrationController: UIViewController {
     }
     
     @objc func onTapSignUp() {
-        print("onTapSignUp")
+        guard let email = emailTextField.text else { return }
+        guard let password = passwordTextField.text else { return }
+        guard let username = userNameTextField.text else { return }
+        guard let fullName = fullNameTextField.text else { return }
+        guard let image = profileImage else { return }
+        
+        let credential = AuthCredential(email: email, password: password, fullname: fullName, username: username, profileImage: image)
+        AuthService.shared.registerUser(withCredential: credential)
     }
     
     @objc func onTapLogin() {
