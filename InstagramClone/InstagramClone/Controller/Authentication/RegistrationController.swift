@@ -113,7 +113,14 @@ class RegistrationController: UIViewController {
         guard let image = profileImage else { return }
         
         let credential = AuthCredential(email: email, password: password, fullname: fullName, username: username, profileImage: image)
-        AuthService.shared.registerUser(withCredential: credential)
+        AuthService.shared.registerUser(withCredential: credential) { error in
+            if let error = error {
+                print("DEBUG: Failed to register user \(error.localizedDescription)")
+                return
+            }
+            
+            print("Success register")
+        }
     }
     
     @objc func onTapLogin() {
