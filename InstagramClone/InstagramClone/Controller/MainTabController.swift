@@ -32,7 +32,7 @@ class MainTabController: UITabBarController {
         
         let notification =  templateNavController(unSelectedImage: UIImage(systemName: "heart")!, selectedImage: UIImage(systemName: "heart.fill")!, viewController: NotificationController())
         
-        let profile =  templateNavController(unSelectedImage: UIImage(systemName: "person.crop.circle")!, selectedImage: UIImage(systemName: "person.crop.circle.fill")!, viewController: ProfileController())
+        let profile =  templateNavController(unSelectedImage: UIImage(systemName: "person.crop.circle")!, selectedImage: UIImage(systemName: "person.crop.circle.fill")!, viewController: ProfileController(collectionViewLayout: UICollectionViewFlowLayout()))
         
         viewControllers = [feed, search, post, notification, profile]
         
