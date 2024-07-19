@@ -119,7 +119,7 @@ class RegistrationController: UIViewController {
                 return
             }
             
-            print("Success register")
+            self.dismiss(animated: true)
         }
     }
     

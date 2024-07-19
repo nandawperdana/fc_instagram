@@ -136,7 +136,17 @@ class LoginController: UIViewController {
     
     // MARK: Actions
     @objc func onTapLogin() {
-        print("onTapLogin")
+        guard let email = emailTextField.text else { return }
+        guard let password = passwordTextField.text else { return }
+        
+        AuthService.shared.loginUser(withEmail: email, password: password) { result, error in   
+            if let error = error {
+                print("DEBUG: Failed to log user in \(error.localizedDescription)")
+                return
+            }
+            
+            self.dismiss(animated: true)
+        }
     }
     
     @objc func onTapLoginApple() {
@@ -168,7 +178,14 @@ class LoginController: UIViewController {
                                                            accessToken: user.accessToken.tokenString)
             
             // Login to Firebase Auth
-            AuthService.shared.registerGoogleUser(withCredential: credential)
+            AuthService.shared.registerGoogleUser(withCredential: credential) { error in
+                if let error = error {
+                    print("DEBUG: Failed to Register Google User \(error.localizedDescription)")
+                    return
+                }
+                
+                self.dismiss(animated: true)
+            }
         }
     }
     

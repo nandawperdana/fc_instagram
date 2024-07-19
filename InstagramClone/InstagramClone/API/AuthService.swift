@@ -23,6 +23,10 @@ class AuthService {
     
     private init() { }
     
+    func loginUser(withEmail email: String, password: String, completion: @escaping(AuthDataResult?, Error?) -> Void) {
+        Auth.auth().signIn(withEmail: email.lowercased(), password: password, completion: completion)
+    }
+    
     func registerUser(withCredential credential: AuthCredentials, completion: @escaping(Error?) -> Void) {
         guard let password = credential.password else { return }
         guard let profileImage = credential.profileImage else { return }
@@ -43,12 +47,8 @@ class AuthService {
         }
     }
     
-    func registerGoogleUser(withCredential credential: AuthCredential) {
-        do {
-            try Auth.auth().signOut()
-        } catch let error as NSError {
-            print("DEBUG: Failed to Sign Out \(error.localizedDescription)")
-        }
+    func registerGoogleUser(withCredential credential: AuthCredential, completion: @escaping(Error?) -> Void) {
+        logoutUser()
             
         Auth.auth().signIn(with: credential) { result, error in
             if let error = error {
@@ -62,7 +62,15 @@ class AuthService {
             
             let data: [String: Any] = ["email": profile.email, "fullname": profile.name, "profileImage": profile.imageURL(withDimension: 200)?.absoluteString ?? "", "uid": uid, "username": extractUsername(from: profile.email) ?? profile.email]
             
-            FirebaseReference.getReference(.User).document(uid).setData(data, completion: nil)
+            FirebaseReference.getReference(.User).document(uid).setData(data, completion: completion)
+        }
+    }
+    
+    func logoutUser() {
+        do {
+            try Auth.auth().signOut()
+        } catch let error as NSError {
+            print("DEBUG: Failed to Sign Out \(error.localizedDescription)")
         }
     }
 }
