@@ -112,7 +112,7 @@ class RegistrationController: UIViewController {
         guard let fullName = fullNameTextField.text else { return }
         guard let image = profileImage else { return }
         
-        let credential = AuthCredential(email: email, password: password, fullname: fullName, username: username, profileImage: image)
+        let credential = AuthCredentials(email: email, password: password, fullname: fullName, username: username, profileImage: image, profileImageUrl: nil)
         AuthService.shared.registerUser(withCredential: credential) { error in
             if let error = error {
                 print("DEBUG: Failed to register user \(error.localizedDescription)")

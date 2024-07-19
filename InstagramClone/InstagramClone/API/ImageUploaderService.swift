@@ -17,7 +17,7 @@ class ImageUploaderService {
         guard let imageData = image.jpegData(compressionQuality: 0.6) else { return }
         
         let filename = NSUUID().uuidString
-        let ref = Storage.storage().reference(withPath: "/Avatar/\(filename)")
+        let ref = Storage.storage().reference(withPath: "/ProfileImage/\(filename)" + ".jpg")
         
         ref.putData(imageData, metadata: nil) { metadata, error in
             if let error = error {

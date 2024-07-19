@@ -6,6 +6,9 @@
 //
 
 import UIKit
+import GoogleSignIn
+import FirebaseCore
+import FirebaseAuth
 
 class LoginController: UIViewController {
     
@@ -42,6 +45,15 @@ class LoginController: UIViewController {
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
         button.isEnabled = false
         button.addTarget(self, action: #selector(onTapLogin), for: .touchUpInside)
+        return button
+    }()
+    
+    private let googleButton: GIDSignInButton = {
+       let button = GIDSignInButton()
+        button.backgroundColor = UIColor.systemBlue
+        button.layer.cornerRadius = 10
+        button.setHeight(40)
+        button.addTarget(self, action: #selector(onTapLoginGoogle), for: .touchUpInside)
         return button
     }()
     
@@ -82,18 +94,6 @@ class LoginController: UIViewController {
         button.setHeight(40)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
         button.addTarget(self, action: #selector(onTapLoginApple), for: .touchUpInside)
-        return button
-    }()
-    
-    private let googleButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("Continue with Google", for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = .systemBlue
-        button.layer.cornerRadius = 10
-        button.setHeight(40)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
-        button.addTarget(self, action: #selector(onTapLoginGoogle), for: .touchUpInside)
         return button
     }()
     
@@ -144,7 +144,32 @@ class LoginController: UIViewController {
     }
     
     @objc func onTapLoginGoogle() {
-        print("onTapLoginGoogle")
+        guard let clientID = FirebaseApp.app()?.options.clientID else { return }
+        
+        // Create Google Sign In configuration object.
+        let config = GIDConfiguration(clientID: clientID)
+        GIDSignIn.sharedInstance.configuration = config
+        
+        // Start the sign in flow!
+        GIDSignIn.sharedInstance.signIn(withPresenting: self) { result, error in
+            guard error == nil else {
+                print("DEBUG: Error Google Sign In ", error?.localizedDescription ?? "")
+                return
+            }
+            
+            guard let user = result?.user,
+                  let idToken = user.idToken?.tokenString
+            else {
+                print("DEBUG: Error Google Sign In Result")
+                return
+            }
+            
+            let credential = GoogleAuthProvider.credential(withIDToken: idToken,
+                                                           accessToken: user.accessToken.tokenString)
+            
+            // Login to Firebase Auth
+            AuthService.shared.registerGoogleUser(withCredential: credential)
+        }
     }
     
     @objc func onTapRegister() {
