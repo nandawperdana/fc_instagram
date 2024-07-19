@@ -9,6 +9,14 @@ import UIKit
 
 class ProfileCell: UICollectionViewCell {
     // MARK: Properties
+    private let postImageView: UIImageView = {
+        let iv = UIImageView()
+        iv.contentMode = .scaleAspectFill
+        iv.clipsToBounds = true
+        iv.isUserInteractionEnabled = true
+        iv.image = UIImage(systemName: "person.fill")
+        return iv
+    }()
     
     // MARK: Lifecycle
     override init(frame: CGRect) {
@@ -23,6 +31,9 @@ class ProfileCell: UICollectionViewCell {
     
     // MARK: Configure UI
     private func configureUI() {
-        backgroundColor = .systemGray
+        backgroundColor = .white
+        
+        addSubview(postImageView)
+        postImageView.fillSuperview()
     }
 }
