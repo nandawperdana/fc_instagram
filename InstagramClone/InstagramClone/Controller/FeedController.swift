@@ -22,6 +22,18 @@ class FeedController: UICollectionViewController {
         collectionView.backgroundColor = .white
         
         collectionView.register(FeedCell.self, forCellWithReuseIdentifier: "Cell")
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(onTapLogout))
+    }
+    
+    // MARK: Actions
+    @objc func onTapLogout() {
+        AuthService.shared.logoutUser()
+        let controller = LoginController()
+        controller.delegate = self.tabBarController as? MainTabController
+        let nav = UINavigationController(rootViewController: controller)
+        nav.modalPresentationStyle = .fullScreen
+        self.present(nav, animated: true, completion: nil)
     }
 }
 

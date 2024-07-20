@@ -11,8 +11,17 @@ import FirebaseAuth
 
 class ProfileController: UICollectionViewController {
     // MARK: Vars
-    var user: User? {
+    private var user: User {
         didSet { collectionView.reloadData() }
+    }
+    
+    init(user: User) {
+        self.user = user
+        super.init(collectionViewLayout: UICollectionViewFlowLayout())
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     // MARK: Lifecycle
@@ -20,23 +29,15 @@ class ProfileController: UICollectionViewController {
         super.viewDidLoad()
         
         configureUI()
-        fetchUser()
     }
     
     // MARK: API
-    private func fetchUser() {
-        guard let uid = Auth.auth().currentUser?.uid else { return }
-        
-        UserService.shared.fetchUser(withUid: uid) { user in
-            self.user = user
-            self.navigationItem.title = user.username
-        }
-    }
     
     // MARK: Configure UI
     private func configureUI() {
         collectionView.backgroundColor = .white
         
+        self.navigationItem.title = user.username
         collectionView.register(ProfileCell.self, forCellWithReuseIdentifier: "ProfileCell")
         collectionView.register(ProfileHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "ProfileHeader")
     }
@@ -55,9 +56,7 @@ extension ProfileController {
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "ProfileHeader", for: indexPath) as! ProfileHeader
-        if let user = user {
-            header.viewModel = ProfileHeaderViewModel(user: user)
-        }
+        header.viewModel = ProfileHeaderViewModel(user: user)
         return header
     }
 }
