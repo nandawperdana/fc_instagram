@@ -14,6 +14,7 @@ class LoginController: UIViewController {
     
     // MARK: Properties
     private var viewModel = LoginViewModel()
+    weak var delegate: AuthenticationDelegate?
     
     private let iconImage: UIImageView = {
         let iv = UIImageView(image: UIImage(named: "ic_logo"))
@@ -145,7 +146,7 @@ class LoginController: UIViewController {
                 return
             }
             
-            self.dismiss(animated: true)
+            self.delegate?.authenticationDidComplete()
         }
     }
     
@@ -184,13 +185,14 @@ class LoginController: UIViewController {
                     return
                 }
                 
-                self.dismiss(animated: true)
+                self.delegate?.authenticationDidComplete()
             }
         }
     }
     
     @objc func onTapRegister() {
         let controller = RegistrationController()
+        controller.delegate = delegate
         navigationController?.pushViewController(controller, animated: true)
     }
     
