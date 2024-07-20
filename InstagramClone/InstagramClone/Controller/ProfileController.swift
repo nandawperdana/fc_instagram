@@ -12,9 +12,7 @@ import FirebaseAuth
 class ProfileController: UICollectionViewController {
     // MARK: Vars
     var user: User? {
-        didSet {
-            navigationItem.title = user?.username
-        }
+        didSet { collectionView.reloadData() }
     }
     
     // MARK: Lifecycle
@@ -31,7 +29,7 @@ class ProfileController: UICollectionViewController {
         
         UserService.shared.fetchUser(withUid: uid) { user in
             self.user = user
-            print("user in profile controller \(user)")
+            self.navigationItem.title = user.username
         }
     }
     
@@ -57,6 +55,9 @@ extension ProfileController {
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "ProfileHeader", for: indexPath) as! ProfileHeader
+        if let user = user {
+            header.viewModel = ProfileHeaderViewModel(user: user)
+        }
         return header
     }
 }

@@ -6,9 +6,14 @@
 //
 
 import UIKit
+import SDWebImage
 
 class ProfileHeader: UICollectionReusableView {
     // MARK: Properties
+    var viewModel: ProfileHeaderViewModel? {
+        didSet { setData() }
+    }
+    
     private let profileImageView: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFill
@@ -16,14 +21,12 @@ class ProfileHeader: UICollectionReusableView {
         iv.isUserInteractionEnabled = true
         iv.backgroundColor = .systemGray
         iv.tintColor = .white
-        iv.image = UIImage(systemName: "person.fill")
         return iv
     }()
     
     private let nameLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 14)
-        label.text = "John"
         return label
     }()
     
@@ -120,6 +123,15 @@ class ProfileHeader: UICollectionReusableView {
         addSubview(buttonStack)
         buttonStack.anchor(left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, height: 50)
     }
+    
+    // MARK: Load Data
+    private func setData() {
+        guard let viewModel = viewModel else { return }
+        
+        nameLabel.text = viewModel.fullName
+        profileImageView.sd_setImage(with: viewModel.profileImageUrl)
+    }
+    
     
     // MARK: Actions
     @objc func onTapEditProfile() {
