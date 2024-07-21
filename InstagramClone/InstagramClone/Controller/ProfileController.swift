@@ -29,9 +29,15 @@ class ProfileController: UICollectionViewController {
         super.viewDidLoad()
         
         configureUI()
+        fetchIsUserFollowed()
     }
     
     // MARK: API
+    private func fetchIsUserFollowed() {
+        UserService.shared.isUserFollowed(uid: user.uid) { isFollowed in
+            self.user.isFollowed = isFollowed
+        }
+    }
     
     // MARK: Configure UI
     private func configureUI() {

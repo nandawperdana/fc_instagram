@@ -48,4 +48,12 @@ class UserService {
             FirebaseReference.getReference(.Follower).document(uid).collection("user-followers").document(currentId).delete(completion: completion)
         }
     }
+    
+    func isUserFollowed(uid: String, completion: @escaping(Bool) -> Void) {
+        guard let currentId = Auth.auth().currentUser?.uid else { return }
+        FirebaseReference.getReference(.Following).document(currentId).collection("user-following").document(uid).getDocument { snapshot, error in
+            guard let isFollowed = snapshot?.exists else { return }
+            completion(isFollowed)
+        }
+    }
 }
