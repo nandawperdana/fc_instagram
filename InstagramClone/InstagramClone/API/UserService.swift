@@ -56,4 +56,16 @@ class UserService {
             completion(isFollowed)
         }
     }
+    
+    func fetchUserStats(uid: String, completion: @escaping(UserStats) -> Void) {
+        FirebaseReference.getReference(.Follower).document(uid).collection("user-followers").getDocuments { snapshot, error in
+            let followers = snapshot?.documents.count ?? 0
+            
+            FirebaseReference.getReference(.Following).document(uid).collection("user-following").getDocuments { snapshot, error in
+                let following = snapshot?.documents.count ?? 0
+                
+                completion(UserStats(followers: followers, following: following))
+            }
+        }
+    }
 }

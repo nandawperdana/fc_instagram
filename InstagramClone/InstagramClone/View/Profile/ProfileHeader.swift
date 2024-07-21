@@ -52,7 +52,6 @@ class ProfileHeader: UICollectionReusableView {
         let label = UILabel()
         label.textAlignment = .center
         label.numberOfLines = 0
-        label.attributedText = attributedStatText(value: 10, label: "Posts")
         return label
     }()
     
@@ -64,7 +63,6 @@ class ProfileHeader: UICollectionReusableView {
         let tap = UITapGestureRecognizer(target: self, action: #selector(onTapFollower))
         label.addGestureRecognizer(tap)
         label.isUserInteractionEnabled = true
-        label.attributedText = attributedStatText(value: 10, label: "Followers")
         return label
     }()
     
@@ -76,7 +74,6 @@ class ProfileHeader: UICollectionReusableView {
         let tap = UITapGestureRecognizer(target: self, action: #selector(onTapFollowing))
         label.addGestureRecognizer(tap)
         label.isUserInteractionEnabled = true
-        label.attributedText = attributedStatText(value: 10, label: "Following")
         return label
     }()
     
@@ -140,6 +137,10 @@ class ProfileHeader: UICollectionReusableView {
         editProfileButton.setTitle(viewModel.followButtonText, for: .normal)
         editProfileButton.backgroundColor = viewModel.followButtonBgColor
         editProfileButton.setTitleColor(viewModel.followButtonTextColor, for: .normal)
+        
+        followerLabel.attributedText = viewModel.followersCount
+        followingLabel.attributedText = viewModel.followingCount
+        postLabel.attributedText = viewModel.postCount
     }
     
     // MARK: Actions
@@ -156,9 +157,4 @@ class ProfileHeader: UICollectionReusableView {
         
     }
     
-    func attributedStatText(value: Int, label: String) -> NSAttributedString {
-        let attributedText = NSMutableAttributedString(string: "\(value)\n", attributes: [.font: UIFont.boldSystemFont(ofSize: 14)])
-        attributedText.append(NSAttributedString(string: label, attributes: [.font: UIFont.systemFont(ofSize: 14), .foregroundColor: UIColor.lightGray]))
-        return attributedText
-    }
 }
