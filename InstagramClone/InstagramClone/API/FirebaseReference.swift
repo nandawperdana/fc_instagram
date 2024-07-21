@@ -10,6 +10,8 @@ import FirebaseFirestore
 
 enum FCollectionReference: String {
     case User
+    case Follower
+    case Following
 }
 
 struct FirebaseReference {

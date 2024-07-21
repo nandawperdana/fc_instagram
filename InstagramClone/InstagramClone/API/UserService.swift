@@ -6,6 +6,9 @@
 //
 
 import FirebaseFirestore
+import FirebaseAuth
+
+typealias FirestoreCompletion = (Error?) -> Void
 
 class UserService {
     static let shared = UserService()
@@ -28,5 +31,17 @@ class UserService {
             let users = snapshot.documents.map({ User(dictionary: $0.data()) })
             completion(users)
         }
+    }
+    
+    func follow(uid: String, completion: @escaping(FirestoreCompletion)) {
+        guard let currentUid = Auth.auth().currentUser?.uid else { return }
+        
+        FirebaseReference.getReference(.Following).document(currentUid).collection("user-following").document(uid).setData([:]) { error in
+            FirebaseReference.getReference(.Follower).document(uid).collection("user-followers").document(currentUid).setData([:], completion: completion)
+        }
+    }
+    
+    func unFollow() {
+        
     }
 }
