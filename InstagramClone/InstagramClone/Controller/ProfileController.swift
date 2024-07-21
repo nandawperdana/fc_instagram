@@ -97,11 +97,12 @@ extension ProfileController: ProfileHeaderDelegate {
             print("DEBUG: Edit Profile")
         } else {
             if user.isFollowed {
-                print("DEBUG: Unfollow")
+                UserService.shared.unFollow(uid: user.uid) { error in
+                    self.user.isFollowed = false
+                }
             } else {
                 UserService.shared.follow(uid: user.uid) { error in
                     self.user.isFollowed = true
-                    print("Update UI")
                 }
             }
         }
