@@ -13,11 +13,17 @@ let userCellId = "UserCell"
 class SearchController: UITableViewController {
     // MARK: Properties
     private var users = [User]()
+    private var filteredUsers = [User]()
+    private let searchController = UISearchController(searchResultsController: nil)
+    private var isSearchEnabled: Bool {
+        return searchController.isActive && !searchController.searchBar.text!.isEmpty
+    }
     
     // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        configureSearchController()
         fetchUsers()
     }
     
@@ -26,6 +32,16 @@ class SearchController: UITableViewController {
         view.backgroundColor = UIColor.white
         
         tableView.register(UserCell.self, forCellReuseIdentifier: userCellId)
+    }
+    
+    private func configureSearchController() {
+        searchController.searchResultsUpdater = self
+        searchController.searchBar.placeholder = "Search"
+//        searchController.searchBar.delegate = self
+        searchController.hidesNavigationBarDuringPresentation = false
+        searchController.obscuresBackgroundDuringPresentation = false
+        
+        navigationItem.searchController = searchController
     }
     
     // MARK: API
@@ -39,12 +55,28 @@ class SearchController: UITableViewController {
 
 extension SearchController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return users.count
+        return isSearchEnabled ? filteredUsers.count : users.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: userCellId, for: indexPath) as! UserCell
-        cell.user = users[indexPath.row]
+        cell.viewModel = UserCellViewModel(user: isSearchEnabled ? filteredUsers[indexPath.row] : users[indexPath.row])
         return cell
+    }
+}
+
+extension SearchController {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let controller = ProfileController(user: isSearchEnabled ? filteredUsers[indexPath.row] : users[indexPath.row])
+        navigationController?.pushViewController(controller, animated: true)
+    }
+}
+
+extension SearchController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let searchText = searchController.searchBar.text?.lowercased() else { return }
+
+        filteredUsers = users.filter({ $0.username.contains(searchText) || $0.fullname.lowercased().contains(searchText) })
+        self.tableView.reloadData()
     }
 }
