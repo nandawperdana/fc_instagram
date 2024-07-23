@@ -34,6 +34,7 @@
 		E29C04DC2C44597E006E9883 /* InstagramCloneUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29C04DB2C44597E006E9883 /* InstagramCloneUITests.swift */; };
 		E29C04DE2C44597E006E9883 /* InstagramCloneUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29C04DD2C44597E006E9883 /* InstagramCloneUITestsLaunchTests.swift */; };
 		E29C04F12C4459F7006E9883 /* MainTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29C04F02C4459F7006E9883 /* MainTabController.swift */; };
+		E2B363972C4FF7870027A480 /* UploadPostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B363962C4FF7870027A480 /* UploadPostController.swift */; };
 		E2EE8FA52C4553D600296123 /* FeedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2EE8FA42C4553D600296123 /* FeedController.swift */; };
 		E2EE8FA72C4553E400296123 /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2EE8FA62C4553E400296123 /* SearchController.swift */; };
 		E2EE8FA92C4553EB00296123 /* PostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2EE8FA82C4553EB00296123 /* PostController.swift */; };
@@ -99,6 +100,7 @@
 		E29C04DB2C44597E006E9883 /* InstagramCloneUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstagramCloneUITests.swift; sourceTree = "<group>"; };
 		E29C04DD2C44597E006E9883 /* InstagramCloneUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstagramCloneUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		E29C04F02C4459F7006E9883 /* MainTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabController.swift; sourceTree = "<group>"; };
+		E2B363962C4FF7870027A480 /* UploadPostController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadPostController.swift; sourceTree = "<group>"; };
 		E2EE8FA42C4553D600296123 /* FeedController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedController.swift; sourceTree = "<group>"; };
 		E2EE8FA62C4553E400296123 /* SearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
 		E2EE8FA82C4553EB00296123 /* PostController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostController.swift; sourceTree = "<group>"; };
@@ -260,6 +262,7 @@
 				E2EE8FA82C4553EB00296123 /* PostController.swift */,
 				E2EE8FAA2C4553F300296123 /* NotificationController.swift */,
 				E2EE8FAC2C4553FB00296123 /* ProfileController.swift */,
+				E2B363962C4FF7870027A480 /* UploadPostController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -550,6 +553,7 @@
 				E29C04BB2C44597B006E9883 /* AppDelegate.swift in Sources */,
 				E2EE8FA52C4553D600296123 /* FeedController.swift in Sources */,
 				E216FA8E2C48203600F289EF /* FirebaseReference.swift in Sources */,
+				E2B363972C4FF7870027A480 /* UploadPostController.swift in Sources */,
 				E29C04BD2C44597B006E9883 /* SceneDelegate.swift in Sources */,
 				E2EE8FAD2C4553FB00296123 /* ProfileController.swift in Sources */,
 				E20097BF2C4AC55000AAD85F /* ProfileHeader.swift in Sources */,
