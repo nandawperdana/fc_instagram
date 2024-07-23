@@ -17,10 +17,11 @@ class UploadPostController: UIViewController {
         return iv
     }()
     
-    private var captionTextView: UITextView = {
-        let tv = UITextView()
-        tv.text = "Caption"
+    private lazy var captionTextView: InputTextView = {
+        let tv = InputTextView()
+        tv.placeholderText = "Caption"
         tv.font = UIFont.systemFont(ofSize: 16)
+        tv.delegate = self
         return tv
     }()
     
@@ -61,11 +62,26 @@ class UploadPostController: UIViewController {
     }
     
     // MARK: Actions
+    func checkMaxLength(_ textView: UITextView) {
+        if (textView.text.count) > 100 {
+            textView.deleteBackward()
+        }
+    }
+    
     @objc func onTapCancel() {
-        print("onTapCancel")
+        dismiss(animated: true, completion: nil)
     }
     
     @objc func onTapShare() {
         print("onTapShare")
+    }
+}
+
+// MARK: UITextViewDelegate
+extension UploadPostController: UITextViewDelegate {
+    func textViewDidChange(_ textView: UITextView) {
+        checkMaxLength(textView)
+        let count = textView.text.count
+        characterCountLabel.text = "\(count)/100"
     }
 }
