@@ -10,6 +10,10 @@ import UIKit
 
 class FeedCell: UICollectionViewCell {
     // MARK: Properties
+    var viewModel: PostViewModel? {
+        didSet { setData() }
+    }
+    
     private let profileImageView: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFill
@@ -131,6 +135,14 @@ class FeedCell: UICollectionViewCell {
         addSubview(timeStampLabel)
         timeStampLabel.anchor(top: captionLabel.bottomAnchor, left: leftAnchor, paddingLeft: 16)
         timeStampLabel.text = "2 days ago"
+    }
+    
+    private func setData() {
+        guard let viewModel = viewModel else { return }
+        
+        captionLabel.text = viewModel.caption
+        postImageView.sd_setImage(with: viewModel.imageUrl)
+        likesLabel.text = viewModel.likesText
     }
     
     // MARK: Actions

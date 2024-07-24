@@ -47,6 +47,7 @@
 		E2EE8FB62C45793100296123 /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2EE8FB52C45793100296123 /* RegistrationController.swift */; };
 		E2F72E802C5139CE00380154 /* PostService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F72E7F2C5139CE00380154 /* PostService.swift */; };
 		E2F72E822C51459400380154 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F72E812C51459400380154 /* Post.swift */; };
+		E2F72E842C514A6000380154 /* PostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F72E832C514A6000380154 /* PostViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -116,6 +117,7 @@
 		E2EE8FB52C45793100296123 /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
 		E2F72E7F2C5139CE00380154 /* PostService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostService.swift; sourceTree = "<group>"; };
 		E2F72E812C51459400380154 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		E2F72E832C514A6000380154 /* PostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewModel.swift; sourceTree = "<group>"; };
 		F36EEA74759F7FA3B37A74A8 /* Pods-InstagramCloneTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstagramCloneTests.debug.xcconfig"; path = "Target Support Files/Pods-InstagramCloneTests/Pods-InstagramCloneTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -280,6 +282,7 @@
 				E261FDFC2C46BB3000F599DF /* AuthenticationViewModel.swift */,
 				E26C06752C4BF43B0048BA63 /* ProfileHeaderViewModel.swift */,
 				E24610122C4D4C4A009DD163 /* UserCellViewModel.swift */,
+				E2F72E832C514A6000380154 /* PostViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -555,6 +558,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E2F72E842C514A6000380154 /* PostViewModel.swift in Sources */,
 				E261FDFB2C46ACBA00F599DF /* CustomTextField.swift in Sources */,
 				E2EE8FB42C45791E00296123 /* LoginController.swift in Sources */,
 				E26C067A2C4C000E0048BA63 /* AuthenticationDelegate.swift in Sources */,
