@@ -11,7 +11,7 @@ import SDWebImage
 protocol ProfileHeaderDelegate: AnyObject {
     func header(_ header: ProfileHeader, onTapButtonFor user: User)
 }
-
+ 
 class ProfileHeader: UICollectionReusableView {
     // MARK: Properties
     var viewModel: ProfileHeaderViewModel? {

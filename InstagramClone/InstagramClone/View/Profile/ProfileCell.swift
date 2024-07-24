@@ -9,6 +9,10 @@ import UIKit
 
 class ProfileCell: UICollectionViewCell {
     // MARK: Properties
+    var viewModel: PostViewModel? {
+        didSet { setData() }
+    }
+    
     private let postImageView: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFill
@@ -35,5 +39,11 @@ class ProfileCell: UICollectionViewCell {
         
         addSubview(postImageView)
         postImageView.fillSuperview()
+    }
+    
+    private func setData() {
+        guard let viewModel = viewModel else { return }
+        
+        postImageView.sd_setImage(with: viewModel.imageUrl)
     }
 }
