@@ -7,8 +7,20 @@
 
 import UIKit
 
+protocol UploadPostControllerDelegate: AnyObject {
+    func didFinishUploadPost(_ controller: UploadPostController)
+}
+
 class UploadPostController: UIViewController {
     // MARK: Properties
+    var selectedImage: UIImage? {
+        didSet { photoImageView.image = selectedImage }
+    }
+    
+    var currentUser: User?
+    
+    var delegate: UploadPostControllerDelegate?
+    
     private let photoImageView: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFill
@@ -73,7 +85,18 @@ class UploadPostController: UIViewController {
     }
     
     @objc func onTapShare() {
-        print("onTapShare")
+        guard let caption = captionTextView.text else { return }
+        guard let image = selectedImage else { return }
+        guard let user = currentUser else { return }
+        
+        PostService.shared.postAnImage(caption: caption, image: image, user: user) { error in
+            if let error = error {
+                print("DEBUG: Failed to upload post, error: \(error.localizedDescription)")
+                return
+            }
+            
+            self.delegate?.didFinishUploadPost(self)
+        }
     }
 }
 

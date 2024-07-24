@@ -45,6 +45,7 @@
 		E2EE8FB12C456C3D00296123 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2EE8FB02C456C3D00296123 /* Extensions.swift */; };
 		E2EE8FB42C45791E00296123 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2EE8FB32C45791E00296123 /* LoginController.swift */; };
 		E2EE8FB62C45793100296123 /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2EE8FB52C45793100296123 /* RegistrationController.swift */; };
+		E2F72E802C5139CE00380154 /* PostService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F72E7F2C5139CE00380154 /* PostService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -112,6 +113,7 @@
 		E2EE8FB02C456C3D00296123 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		E2EE8FB32C45791E00296123 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		E2EE8FB52C45793100296123 /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
+		E2F72E7F2C5139CE00380154 /* PostService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostService.swift; sourceTree = "<group>"; };
 		F36EEA74759F7FA3B37A74A8 /* Pods-InstagramCloneTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstagramCloneTests.debug.xcconfig"; path = "Target Support Files/Pods-InstagramCloneTests/Pods-InstagramCloneTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -250,6 +252,7 @@
 				E216FA8B2C4818DD00F289EF /* AuthService.swift */,
 				E216FA8D2C48203600F289EF /* FirebaseReference.swift */,
 				E26C06712C4BED8A0048BA63 /* UserService.swift */,
+				E2F72E7F2C5139CE00380154 /* PostService.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -569,6 +572,7 @@
 				E24610132C4D4C4B009DD163 /* UserCellViewModel.swift in Sources */,
 				E2EE8FB12C456C3D00296123 /* Extensions.swift in Sources */,
 				E2EE8FA92C4553EB00296123 /* PostController.swift in Sources */,
+				E2F72E802C5139CE00380154 /* PostService.swift in Sources */,
 				E2EE8FA72C4553E400296123 /* SearchController.swift in Sources */,
 				E26C06722C4BED8A0048BA63 /* UserService.swift in Sources */,
 				E2EE8FAB2C4553F300296123 /* NotificationController.swift in Sources */,
