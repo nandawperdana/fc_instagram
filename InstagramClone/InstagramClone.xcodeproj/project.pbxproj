@@ -46,6 +46,7 @@
 		E2EE8FB42C45791E00296123 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2EE8FB32C45791E00296123 /* LoginController.swift */; };
 		E2EE8FB62C45793100296123 /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2EE8FB52C45793100296123 /* RegistrationController.swift */; };
 		E2F72E802C5139CE00380154 /* PostService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F72E7F2C5139CE00380154 /* PostService.swift */; };
+		E2F72E822C51459400380154 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F72E812C51459400380154 /* Post.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -114,6 +115,7 @@
 		E2EE8FB32C45791E00296123 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		E2EE8FB52C45793100296123 /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
 		E2F72E7F2C5139CE00380154 /* PostService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostService.swift; sourceTree = "<group>"; };
+		E2F72E812C51459400380154 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		F36EEA74759F7FA3B37A74A8 /* Pods-InstagramCloneTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstagramCloneTests.debug.xcconfig"; path = "Target Support Files/Pods-InstagramCloneTests/Pods-InstagramCloneTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -298,6 +300,7 @@
 			isa = PBXGroup;
 			children = (
 				E26C06732C4BEFE10048BA63 /* User.swift */,
+				E2F72E812C51459400380154 /* Post.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -561,6 +564,7 @@
 				E216FA8E2C48203600F289EF /* FirebaseReference.swift in Sources */,
 				E2B363972C4FF7870027A480 /* UploadPostController.swift in Sources */,
 				E29C04BD2C44597B006E9883 /* SceneDelegate.swift in Sources */,
+				E2F72E822C51459400380154 /* Post.swift in Sources */,
 				E2EE8FAD2C4553FB00296123 /* ProfileController.swift in Sources */,
 				E20097BF2C4AC55000AAD85F /* ProfileHeader.swift in Sources */,
 				E20097BA2C4AAB1E00AAD85F /* StringUtil.swift in Sources */,

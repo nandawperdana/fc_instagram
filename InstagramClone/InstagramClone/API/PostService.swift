@@ -23,4 +23,13 @@ class PostService {
             FirebaseReference.getReference(.Post).addDocument(data: data, completion: completion)
         }
     }
+    
+    func fetchPosts(completion: @escaping([Post]) -> Void) {
+        FirebaseReference.getReference(.Post).getDocuments { snapshot, error in
+            guard let documents = snapshot?.documents else { return }
+            
+            let posts = documents.map({ Post(postId: $0.documentID, dictionary: $0.data()) })
+            completion(posts)
+        }
+    }
 }

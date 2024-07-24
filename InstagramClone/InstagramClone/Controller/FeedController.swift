@@ -9,12 +9,15 @@ import Foundation
 import UIKit
 
 class FeedController: UICollectionViewController {
+    // MARK: Properties
+    private var posts: [Post] = []
     
     // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configureUI()
+        fetchPosts()
     }
     
     // MARK: Configure UI
@@ -35,13 +38,25 @@ class FeedController: UICollectionViewController {
         nav.modalPresentationStyle = .fullScreen
         self.present(nav, animated: true, completion: nil)
     }
+    
+    // MARK: API
+    private func fetchPosts() {
+        PostService.shared.fetchPosts { posts in
+            self.posts = posts
+            self.collectionView.reloadData()
+            
+//            posts.forEach { post in
+//                print("Post data: \(post)")
+//            }
+        }
+    }
 }
 
 
 // MARK: UICollectionView Data Source
 extension FeedController {
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 6
+        return posts.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
