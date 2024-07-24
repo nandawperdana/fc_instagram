@@ -27,6 +27,10 @@ class FeedController: UICollectionViewController {
         collectionView.register(FeedCell.self, forCellWithReuseIdentifier: "Cell")
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(onTapLogout))
+        
+        let refresher = UIRefreshControl()
+        refresher.addTarget(self, action: #selector(onTapRefresh), for: .valueChanged)
+        collectionView.refreshControl = refresher
     }
     
     // MARK: Actions
@@ -39,11 +43,18 @@ class FeedController: UICollectionViewController {
         self.present(nav, animated: true, completion: nil)
     }
     
+    @objc func onTapRefresh() {
+        fetchPosts()
+    }
+    
     // MARK: API
     private func fetchPosts() {
         PostService.shared.fetchPosts { posts in
             self.posts = posts
             self.collectionView.reloadData()
+            self.collectionView.refreshControl?.endRefreshing()
+            
+            print("update data")
             
 //            posts.forEach { post in
 //                print("Post data: \(post)")

@@ -25,7 +25,7 @@ class PostService {
     }
     
     func fetchPosts(completion: @escaping([Post]) -> Void) {
-        FirebaseReference.getReference(.Post).getDocuments { snapshot, error in
+        FirebaseReference.getReference(.Post).order(by: "timestamp", descending: true).getDocuments { snapshot, error in
             guard let documents = snapshot?.documents else { return }
             
             let posts = documents.map({ Post(postId: $0.documentID, dictionary: $0.data()) })
