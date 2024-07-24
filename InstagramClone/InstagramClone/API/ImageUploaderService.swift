@@ -7,6 +7,7 @@
 
 import UIKit
 import FirebaseStorage
+import ProgressHUD
 
 class ImageUploaderService {
     static let shared = ImageUploaderService()
@@ -18,10 +19,12 @@ class ImageUploaderService {
         
         let filename = NSUUID().uuidString
         let ref = Storage.storage().reference(withPath: "/ProfileImage/\(filename)" + ".jpg")
+        var task: StorageUploadTask!
         
-        ref.putData(imageData, metadata: nil) { metadata, error in
+        task = ref.putData(imageData, metadata: nil) { metadata, error in
             if let error = error {
                 print("DEBUG: Failed to upload image \(error.localizedDescription)")
+                ProgressHUD.dismiss()
                 return
             }
             
@@ -29,6 +32,13 @@ class ImageUploaderService {
                 guard let imageUrl = url?.absoluteString else { return }
                 completion(imageUrl)
             }
+        }
+        
+        task.observe(StorageTaskStatus.progress) { snapshot in
+            guard let snapshotProgress = snapshot.progress else { return }
+            
+            let progress = snapshotProgress.completedUnitCount / snapshotProgress.totalUnitCount
+            ProgressHUD.progress(CGFloat(progress))
         }
     }
 }
