@@ -126,11 +126,9 @@ class FeedCell: UICollectionViewCell {
         
         addSubview(likesLabel)
         likesLabel.anchor(top: likeButton.bottomAnchor, left: leftAnchor, paddingLeft: 16, paddingBottom: 4)
-        likesLabel.text = "199 likes"
         
         addSubview(captionLabel)
         captionLabel.anchor(top: likesLabel.bottomAnchor, left: leftAnchor, right: rightAnchor, paddingLeft: 16, paddingBottom: 4)
-        captionLabel.text = "Caption for this image"
         
         addSubview(timeStampLabel)
         timeStampLabel.anchor(top: captionLabel.bottomAnchor, left: leftAnchor, paddingLeft: 16)
@@ -140,9 +138,13 @@ class FeedCell: UICollectionViewCell {
     private func setData() {
         guard let viewModel = viewModel else { return }
         
+        profileImageView.sd_setImage(with: viewModel.profileImageUrl)
+        usernameButton.setTitle(viewModel.username, for: .normal)
+        
         captionLabel.text = viewModel.caption
         postImageView.sd_setImage(with: viewModel.imageUrl)
         likesLabel.text = viewModel.likesText
+        timeStampLabel.text = viewModel.timestampText
     }
     
     // MARK: Actions

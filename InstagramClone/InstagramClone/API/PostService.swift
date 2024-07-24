@@ -18,7 +18,7 @@ class PostService {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         
         ImageUploaderService.shared.uploadImage(image: image) { imageUrl in
-            let data = ["caption": caption, "timestamp": Timestamp(date: Date()), "likes": 0, "imageUrl": imageUrl, "ownerUid": uid] as [String: Any]
+            let data = ["caption": caption, "timestamp": Timestamp(date: Date()), "likes": 0, "imageUrl": imageUrl, "ownerUid": uid, "ownerUsername": user.username, "ownerProfileImage": user.profileImage] as [String: Any]
             
             FirebaseReference.getReference(.Post).addDocument(data: data, completion: completion)
         }
