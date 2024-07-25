@@ -12,6 +12,7 @@ enum FCollectionReference: String {
     case User
     case Follower
     case Following
+    case Post
 }
 
 struct FirebaseReference {

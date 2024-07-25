@@ -9,12 +9,16 @@ import Foundation
 import UIKit
 
 class FeedController: UICollectionViewController {
+    // MARK: Properties
+    private var posts: [Post] = []
+    var post: Post?
     
     // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configureUI()
+        fetchPosts()
     }
     
     // MARK: Configure UI
@@ -23,7 +27,14 @@ class FeedController: UICollectionViewController {
         
         collectionView.register(FeedCell.self, forCellWithReuseIdentifier: "Cell")
         
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(onTapLogout))
+        if post == nil {
+            navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(onTapLogout))
+        }
+         
+        
+        let refresher = UIRefreshControl()
+        refresher.addTarget(self, action: #selector(onTapRefresh), for: .valueChanged)
+        collectionView.refreshControl = refresher
     }
     
     // MARK: Actions
@@ -35,17 +46,38 @@ class FeedController: UICollectionViewController {
         nav.modalPresentationStyle = .fullScreen
         self.present(nav, animated: true, completion: nil)
     }
+    
+    @objc func onTapRefresh() {
+        fetchPosts()
+    }
+    
+    // MARK: API
+    private func fetchPosts() {
+        guard post == nil else { return }
+        
+        PostService.shared.fetchPosts { posts in
+            self.posts = posts
+            self.collectionView.reloadData()
+            self.collectionView.refreshControl?.endRefreshing()
+        }
+    }
 }
 
 
 // MARK: UICollectionView Data Source
 extension FeedController {
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 6
+        return post == nil ? posts.count : 1
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! FeedCell
+        
+        if let post = post {
+            cell.viewModel = PostViewModel(post: post)
+        } else {
+            cell.viewModel = PostViewModel(post: self.posts[indexPath.row])
+        }
         return cell
     }
 }
