@@ -100,5 +100,14 @@ extension FeedController: FeedCellDelegate {
         navigationController?.pushViewController(controller, animated: true)
     }
     
-    
+    func call(_ cell: FeedCell, didLike post: Post) {
+        cell.viewModel?.post.didLike.toggle()
+        
+        print("didLike \(post.didLike)")
+        if post.didLike {
+            print("unliked")
+        } else {
+            print("liked")
+        }
+    }
 }

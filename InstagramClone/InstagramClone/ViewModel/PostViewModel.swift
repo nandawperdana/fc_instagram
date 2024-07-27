@@ -44,5 +44,6 @@ struct PostViewModel {
     
     init(post: Post) {
         self.post = post
+        print("didLike init: \(post.didLike)")
     }
 }
