@@ -17,6 +17,8 @@
 		E216FA8A2C4818D500F289EF /* ImageUploaderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E216FA892C4818D500F289EF /* ImageUploaderService.swift */; };
 		E216FA8C2C4818DD00F289EF /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E216FA8B2C4818DD00F289EF /* AuthService.swift */; };
 		E216FA8E2C48203600F289EF /* FirebaseReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = E216FA8D2C48203600F289EF /* FirebaseReference.swift */; };
+		E23712152C52A07300DB618B /* CommentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23712142C52A07300DB618B /* CommentController.swift */; };
+		E23712172C52A17600DB618B /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23712162C52A17600DB618B /* CommentCell.swift */; };
 		E24610132C4D4C4B009DD163 /* UserCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24610122C4D4C4A009DD163 /* UserCellViewModel.swift */; };
 		E261FDFB2C46ACBA00F599DF /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E261FDFA2C46ACBA00F599DF /* CustomTextField.swift */; };
 		E261FDFD2C46BB3000F599DF /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E261FDFC2C46BB3000F599DF /* AuthenticationViewModel.swift */; };
@@ -25,6 +27,10 @@
 		E26C06762C4BF43B0048BA63 /* ProfileHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26C06752C4BF43B0048BA63 /* ProfileHeaderViewModel.swift */; };
 		E26C067A2C4C000E0048BA63 /* AuthenticationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26C06792C4C000E0048BA63 /* AuthenticationDelegate.swift */; };
 		E26C06802C4C11730048BA63 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26C067F2C4C11730048BA63 /* UserCell.swift */; };
+		E28AEFD12C552C5100713A2E /* CustomInputAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28AEFD02C552C5100713A2E /* CustomInputAccessoryView.swift */; };
+		E28AEFD32C553A2800713A2E /* CommentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28AEFD22C553A2800713A2E /* CommentService.swift */; };
+		E28AEFD52C553D5E00713A2E /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28AEFD42C553D5E00713A2E /* Comment.swift */; };
+		E28AEFD72C55432E00713A2E /* CommentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28AEFD62C55432E00713A2E /* CommentViewModel.swift */; };
 		E29C04BB2C44597B006E9883 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29C04BA2C44597B006E9883 /* AppDelegate.swift */; };
 		E29C04BD2C44597B006E9883 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29C04BC2C44597B006E9883 /* SceneDelegate.swift */; };
 		E29C04C22C44597B006E9883 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = E29C04C12C44597B006E9883 /* Base */; };
@@ -83,6 +89,8 @@
 		E216FA892C4818D500F289EF /* ImageUploaderService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUploaderService.swift; sourceTree = "<group>"; };
 		E216FA8B2C4818DD00F289EF /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		E216FA8D2C48203600F289EF /* FirebaseReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseReference.swift; sourceTree = "<group>"; };
+		E23712142C52A07300DB618B /* CommentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentController.swift; sourceTree = "<group>"; };
+		E23712162C52A17600DB618B /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
 		E24610122C4D4C4A009DD163 /* UserCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCellViewModel.swift; sourceTree = "<group>"; };
 		E261FDFA2C46ACBA00F599DF /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		E261FDFC2C46BB3000F599DF /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
@@ -91,6 +99,10 @@
 		E26C06752C4BF43B0048BA63 /* ProfileHeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderViewModel.swift; sourceTree = "<group>"; };
 		E26C06792C4C000E0048BA63 /* AuthenticationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationDelegate.swift; sourceTree = "<group>"; };
 		E26C067F2C4C11730048BA63 /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
+		E28AEFD02C552C5100713A2E /* CustomInputAccessoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomInputAccessoryView.swift; sourceTree = "<group>"; };
+		E28AEFD22C553A2800713A2E /* CommentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentService.swift; sourceTree = "<group>"; };
+		E28AEFD42C553D5E00713A2E /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		E28AEFD62C55432E00713A2E /* CommentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentViewModel.swift; sourceTree = "<group>"; };
 		E29C04B72C44597B006E9883 /* InstagramClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstagramClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E29C04BA2C44597B006E9883 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E29C04BC2C44597B006E9883 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -257,6 +269,7 @@
 				E216FA8D2C48203600F289EF /* FirebaseReference.swift */,
 				E26C06712C4BED8A0048BA63 /* UserService.swift */,
 				E2F72E7F2C5139CE00380154 /* PostService.swift */,
+				E28AEFD22C553A2800713A2E /* CommentService.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -272,6 +285,7 @@
 				E2EE8FAA2C4553F300296123 /* NotificationController.swift */,
 				E2EE8FAC2C4553FB00296123 /* ProfileController.swift */,
 				E2B363962C4FF7870027A480 /* UploadPostController.swift */,
+				E23712142C52A07300DB618B /* CommentController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -283,6 +297,7 @@
 				E26C06752C4BF43B0048BA63 /* ProfileHeaderViewModel.swift */,
 				E24610122C4D4C4A009DD163 /* UserCellViewModel.swift */,
 				E2F72E832C514A6000380154 /* PostViewModel.swift */,
+				E28AEFD62C55432E00713A2E /* CommentViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -295,6 +310,8 @@
 				E261FDFA2C46ACBA00F599DF /* CustomTextField.swift */,
 				E26C067F2C4C11730048BA63 /* UserCell.swift */,
 				E2B363982C4FFC700027A480 /* InputTextView.swift */,
+				E23712162C52A17600DB618B /* CommentCell.swift */,
+				E28AEFD02C552C5100713A2E /* CustomInputAccessoryView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -304,6 +321,7 @@
 			children = (
 				E26C06732C4BEFE10048BA63 /* User.swift */,
 				E2F72E812C51459400380154 /* Post.swift */,
+				E28AEFD42C553D5E00713A2E /* Comment.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -563,20 +581,26 @@
 				E2EE8FB42C45791E00296123 /* LoginController.swift in Sources */,
 				E26C067A2C4C000E0048BA63 /* AuthenticationDelegate.swift in Sources */,
 				E261FDFD2C46BB3000F599DF /* AuthenticationViewModel.swift in Sources */,
+				E28AEFD12C552C5100713A2E /* CustomInputAccessoryView.swift in Sources */,
 				E29C04BB2C44597B006E9883 /* AppDelegate.swift in Sources */,
+				E28AEFD52C553D5E00713A2E /* Comment.swift in Sources */,
 				E2EE8FA52C4553D600296123 /* FeedController.swift in Sources */,
 				E216FA8E2C48203600F289EF /* FirebaseReference.swift in Sources */,
 				E2B363972C4FF7870027A480 /* UploadPostController.swift in Sources */,
+				E23712152C52A07300DB618B /* CommentController.swift in Sources */,
 				E29C04BD2C44597B006E9883 /* SceneDelegate.swift in Sources */,
 				E2F72E822C51459400380154 /* Post.swift in Sources */,
+				E28AEFD32C553A2800713A2E /* CommentService.swift in Sources */,
 				E2EE8FAD2C4553FB00296123 /* ProfileController.swift in Sources */,
 				E20097BF2C4AC55000AAD85F /* ProfileHeader.swift in Sources */,
+				E23712172C52A17600DB618B /* CommentCell.swift in Sources */,
 				E20097BA2C4AAB1E00AAD85F /* StringUtil.swift in Sources */,
 				E26C06742C4BEFE10048BA63 /* User.swift in Sources */,
 				E29C04F12C4459F7006E9883 /* MainTabController.swift in Sources */,
 				E2B363992C4FFC700027A480 /* InputTextView.swift in Sources */,
 				E26C06802C4C11730048BA63 /* UserCell.swift in Sources */,
 				E26C06762C4BF43B0048BA63 /* ProfileHeaderViewModel.swift in Sources */,
+				E28AEFD72C55432E00713A2E /* CommentViewModel.swift in Sources */,
 				E24610132C4D4C4B009DD163 /* UserCellViewModel.swift in Sources */,
 				E2EE8FB12C456C3D00296123 /* Extensions.swift in Sources */,
 				E2EE8FA92C4553EB00296123 /* PostController.swift in Sources */,
