@@ -8,11 +8,17 @@
 import Foundation
 import UIKit
 
+protocol FeedCellDelegate: AnyObject {
+    func call(_ cell: FeedCell, showCommentsFor post: Post)
+}
+
 class FeedCell: UICollectionViewCell {
     // MARK: Properties
     var viewModel: PostViewModel? {
         didSet { setData() }
     }
+    
+    weak var delegate: FeedCellDelegate?
     
     private let profileImageView: UIImageView = {
         let iv = UIImageView()
@@ -157,7 +163,9 @@ class FeedCell: UICollectionViewCell {
     }
     
     @objc func onTapComment() {
-        print("onTapComment")
+        guard let viewModel = viewModel else { return }
+        
+        delegate?.call(self, showCommentsFor: viewModel.post)
     }
     
     @objc func onTapShare() {
