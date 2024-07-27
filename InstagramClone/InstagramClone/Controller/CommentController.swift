@@ -83,14 +83,15 @@ extension CommentController {
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CommentCell
-        cell.comment = comments[indexPath.row]
+        cell.viewModel = CommentViewModel(comment: comments[indexPath.row])
         return cell
     }
 }
 
 extension CommentController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let height = 52.0
+        let viewModel = CommentViewModel(comment: comments[indexPath.row])
+        let height = viewModel.size(forWidth: view.frame.width).height + 16
         return CGSize(width: view.frame.width, height: height)
     }
 }
@@ -103,7 +104,6 @@ extension CommentController: CustomInputAccessoryViewDelegate {
         
         CommentService.shared.uploadComment(comment: text, post: post, user: currentUser) { error in
             inputView.clearInputText()
-            print("DEBUG: Success add comment")
         }
     }
 }

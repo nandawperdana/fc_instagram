@@ -9,7 +9,7 @@ import UIKit
 
 class CommentCell: UICollectionViewCell {
     // MARK: Properties
-    var comment: Comment? {
+    var viewModel: CommentViewModel? {
         didSet { setData() }
     }
     
@@ -60,13 +60,9 @@ class CommentCell: UICollectionViewCell {
     }
     
     private func setData() {
-        guard let comment = comment else { return }
+        guard let viewModel = viewModel else { return }
         
-        profileImageView.sd_setImage(with: URL(string: comment.profileImage))
-        
-        let attrString = NSMutableAttributedString(string: "\(comment.username) ", attributes: [.font: UIFont.boldSystemFont(ofSize: 14)])
-        
-        attrString.append(NSAttributedString(string: comment.comment, attributes: [.font: UIFont.systemFont(ofSize: 14)]))
-        commentLabel.attributedText = attrString
+        profileImageView.sd_setImage(with: viewModel.profileImageUrl)
+        commentLabel.attributedText = viewModel.commentLabelText()
     }
 }
