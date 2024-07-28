@@ -5,7 +5,7 @@
 //  Created by nandawperdana on 24/07/24.
 //
 
-import Foundation
+import UIKit
 
 struct PostViewModel {
     var post: Post
@@ -31,7 +31,20 @@ struct PostViewModel {
     }
     
     var likesText: String {
-        return "\(likes) likes"
+        if post.likes != 1 {
+            return "\(likes) likes"
+        } else {
+            return "\(likes) like"
+        }
+    }
+    
+    var likeButtonTintColor: UIColor {
+        return post.didLike ? .red : .black
+    }
+    
+    var likeButtonImage: UIImage? {
+        let image = post.didLike ? "heart.fill" : "heart"
+        return UIImage(systemName: image)
     }
     
     var timestampText: String? {

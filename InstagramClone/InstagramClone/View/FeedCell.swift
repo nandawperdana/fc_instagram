@@ -52,8 +52,6 @@ class FeedCell: UICollectionViewCell {
     
     let likeButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setImage(UIImage(systemName: "heart"), for: .normal)
-        button.tintColor = .black
         button.addTarget(self, action: #selector(onTapLike), for: .touchUpInside)
         return button
     }()
@@ -151,6 +149,8 @@ class FeedCell: UICollectionViewCell {
         captionLabel.text = viewModel.caption
         postImageView.sd_setImage(with: viewModel.imageUrl)
         likesLabel.text = viewModel.likesText
+        likeButton.tintColor = viewModel.likeButtonTintColor
+        likeButton.setImage(viewModel.likeButtonImage, for: .normal)
         timeStampLabel.text = viewModel.timestampText
     }
     

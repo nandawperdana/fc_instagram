@@ -74,4 +74,14 @@ class PostService {
             FirebaseReference.getReference(.User).document(uid).collection("likes").document(post.postId).delete(completion: completion)
         }
     }
+    
+    func isUserLikedPost(post: Post, completion: @escaping(Bool) -> Void) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        
+        // Check user likes
+        FirebaseReference.getReference(.User).document(uid).collection("likes").document(post.postId).getDocument { snapshot, error in
+            guard let didLike = snapshot?.exists else { return }
+            completion(didLike)
+        }
+    }
 }
