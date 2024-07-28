@@ -51,7 +51,6 @@ class PostService {
         
         // Update likes counter increment +1
         FirebaseReference.getReference(.Post).document(post.postId).updateData(["likes": post.likes + 1])
-        print("post likes: \(post.likes)")
         
         // Add new collection to Post
         FirebaseReference.getReference(.Post).document(post.postId).collection("likes").document(uid).setData([:]) { _ in
@@ -62,10 +61,9 @@ class PostService {
     
     func unlikePost(post: Post, completion: @escaping(FirestoreCompletion)) {
         guard let uid = Auth.auth().currentUser?.uid else { return }
+        guard post.likes > 0 else { return }
         
         // Update likes counter decrement -1
-        print("post likes: \(post.likes)")
-//        guard post.likes > 0 else { return }
         FirebaseReference.getReference(.Post).document(post.postId).updateData(["likes": post.likes - 1])
         
         // Delete "likes" collection in Post

@@ -144,13 +144,17 @@ class FeedCell: UICollectionViewCell {
         guard let viewModel = viewModel else { return }
         
         profileImageView.sd_setImage(with: viewModel.profileImageUrl)
+        
         usernameButton.setTitle(viewModel.username, for: .normal)
         
         captionLabel.text = viewModel.caption
+        
         postImageView.sd_setImage(with: viewModel.imageUrl)
+        
         likesLabel.text = viewModel.likesText
         likeButton.tintColor = viewModel.likeButtonTintColor
         likeButton.setImage(viewModel.likeButtonImage, for: .normal)
+        
         timeStampLabel.text = viewModel.timestampText
     }
     
