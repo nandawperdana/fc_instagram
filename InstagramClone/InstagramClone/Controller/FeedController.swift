@@ -10,7 +10,9 @@ import UIKit
 
 class FeedController: UICollectionViewController {
     // MARK: Properties
-    private var posts: [Post] = []
+    private var posts = [Post]() {
+        didSet { self.collectionView.reloadData() }
+    }
     var post: Post?
     
     // MARK: Lifecycle
@@ -57,8 +59,24 @@ class FeedController: UICollectionViewController {
         
         PostService.shared.fetchPosts { posts in
             self.posts = posts
-            self.collectionView.reloadData()
+            self.isUserLikedPost()
             self.collectionView.refreshControl?.endRefreshing()
+        }
+    }
+    
+    private func isUserLikedPost() {
+        if let post = post {
+            PostService.shared.isUserLikedPost(post: post) { didLike in
+                self.post?.didLike = didLike
+            }
+        } else {
+            posts.forEach { post in
+                PostService.shared.isUserLikedPost(post: post) { didLike in
+                    if let index = self.posts.firstIndex(where: { $0.postId == post.postId }) {
+                        self.posts[index].didLike = didLike
+                    }
+                }
+            }
         }
     }
 }
@@ -100,5 +118,21 @@ extension FeedController: FeedCellDelegate {
         navigationController?.pushViewController(controller, animated: true)
     }
     
-    
+    func call(_ cell: FeedCell, didLike post: Post) {
+        cell.viewModel?.post.didLike.toggle()
+        
+        if post.didLike {
+            PostService.shared.unlikePost(post: post) { error in
+                cell.likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
+                cell.likeButton.tintColor = .black
+                cell.viewModel?.post.likes = post.likes - 1
+            }
+        } else {
+            PostService.shared.likePost(post: post) { error in
+                cell.likeButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+                cell.likeButton.tintColor = .red
+                cell.viewModel?.post.likes = post.likes + 1
+            }
+        }
+    }
 }

@@ -45,4 +45,41 @@ class PostService {
             completion(posts)
         }
     }
+    
+    func likePost(post: Post, completion: @escaping(FirestoreCompletion)) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        
+        // Update likes counter increment +1
+        FirebaseReference.getReference(.Post).document(post.postId).updateData(["likes": post.likes + 1])
+        
+        // Add new collection to Post
+        FirebaseReference.getReference(.Post).document(post.postId).collection("likes").document(uid).setData([:]) { _ in
+            // Add new collection to User
+            FirebaseReference.getReference(.User).document(uid).collection("likes").document(post.postId).setData([:], completion: completion)
+        }
+    }
+    
+    func unlikePost(post: Post, completion: @escaping(FirestoreCompletion)) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        guard post.likes > 0 else { return }
+        
+        // Update likes counter decrement -1
+        FirebaseReference.getReference(.Post).document(post.postId).updateData(["likes": post.likes - 1])
+        
+        // Delete "likes" collection in Post
+        FirebaseReference.getReference(.Post).document(post.postId).collection("likes").document(uid).delete { _ in
+            // Delete "likes" collection in User
+            FirebaseReference.getReference(.User).document(uid).collection("likes").document(post.postId).delete(completion: completion)
+        }
+    }
+    
+    func isUserLikedPost(post: Post, completion: @escaping(Bool) -> Void) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        
+        // Check user likes
+        FirebaseReference.getReference(.User).document(uid).collection("likes").document(post.postId).getDocument { snapshot, error in
+            guard let didLike = snapshot?.exists else { return }
+            completion(didLike)
+        }
+    }
 }
