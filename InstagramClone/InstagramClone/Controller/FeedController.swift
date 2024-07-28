@@ -103,11 +103,13 @@ extension FeedController: FeedCellDelegate {
     func call(_ cell: FeedCell, didLike post: Post) {
         cell.viewModel?.post.didLike.toggle()
         
-        print("didLike \(post.didLike)")
         if post.didLike {
             print("unliked")
         } else {
-            print("liked")
+            PostService.shared.likePost(post: post) { error in
+                cell.likeButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+                cell.likeButton.tintColor = .red
+            }
         }
     }
 }

@@ -50,7 +50,7 @@ class FeedCell: UICollectionViewCell {
         return iv
     }()
     
-    private let likeButton: UIButton = {
+    let likeButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(UIImage(systemName: "heart"), for: .normal)
         button.tintColor = .black

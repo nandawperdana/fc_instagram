@@ -45,4 +45,17 @@ class PostService {
             completion(posts)
         }
     }
+    
+    func likePost(post: Post, completion: @escaping(FirestoreCompletion)) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        
+        // Update likes counter increment +1
+        FirebaseReference.getReference(.Post).document(post.postId).updateData(["likes": post.likes + 1])
+        
+        // Add new collection to Post
+        FirebaseReference.getReference(.Post).document(post.postId).collection("likes").document(uid).setData([:]) { _ in
+            // Add new collection to User
+            FirebaseReference.getReference(.User).document(uid).collection("likes").document(post.postId).setData([:], completion: completion)
+        }
+    }
 }
