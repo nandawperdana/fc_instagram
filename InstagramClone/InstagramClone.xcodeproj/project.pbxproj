@@ -43,6 +43,7 @@
 		E2B363972C4FF7870027A480 /* UploadPostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B363962C4FF7870027A480 /* UploadPostController.swift */; };
 		E2B363992C4FFC700027A480 /* InputTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B363982C4FFC700027A480 /* InputTextView.swift */; };
 		E2EB3A2C2C57DBF100BA3F1C /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2EB3A2B2C57DBF100BA3F1C /* NotificationCell.swift */; };
+		E2EB3A2E2C57E16800BA3F1C /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2EB3A2D2C57E16800BA3F1C /* Notification.swift */; };
 		E2EE8FA52C4553D600296123 /* FeedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2EE8FA42C4553D600296123 /* FeedController.swift */; };
 		E2EE8FA72C4553E400296123 /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2EE8FA62C4553E400296123 /* SearchController.swift */; };
 		E2EE8FA92C4553EB00296123 /* PostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2EE8FA82C4553EB00296123 /* PostController.swift */; };
@@ -120,6 +121,7 @@
 		E2B363962C4FF7870027A480 /* UploadPostController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadPostController.swift; sourceTree = "<group>"; };
 		E2B363982C4FFC700027A480 /* InputTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputTextView.swift; sourceTree = "<group>"; };
 		E2EB3A2B2C57DBF100BA3F1C /* NotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
+		E2EB3A2D2C57E16800BA3F1C /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		E2EE8FA42C4553D600296123 /* FeedController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedController.swift; sourceTree = "<group>"; };
 		E2EE8FA62C4553E400296123 /* SearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
 		E2EE8FA82C4553EB00296123 /* PostController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostController.swift; sourceTree = "<group>"; };
@@ -325,6 +327,7 @@
 				E26C06732C4BEFE10048BA63 /* User.swift */,
 				E2F72E812C51459400380154 /* Post.swift */,
 				E28AEFD42C553D5E00713A2E /* Comment.swift */,
+				E2EB3A2D2C57E16800BA3F1C /* Notification.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -599,6 +602,7 @@
 				E23712172C52A17600DB618B /* CommentCell.swift in Sources */,
 				E20097BA2C4AAB1E00AAD85F /* StringUtil.swift in Sources */,
 				E26C06742C4BEFE10048BA63 /* User.swift in Sources */,
+				E2EB3A2E2C57E16800BA3F1C /* Notification.swift in Sources */,
 				E29C04F12C4459F7006E9883 /* MainTabController.swift in Sources */,
 				E2B363992C4FFC700027A480 /* InputTextView.swift in Sources */,
 				E26C06802C4C11730048BA63 /* UserCell.swift in Sources */,
