@@ -29,4 +29,16 @@ class NotificationService {
         
         docRef.setData(data)
     }
+    
+    func fetchNotifications(completion: @escaping([Notification]) -> Void) {
+        guard let currentUid = Auth.auth().currentUser?.uid else { return }
+        
+        let query = FirebaseReference.getReference(.Notification).document(currentUid).collection("user-notifications").order(by: "timestamp", descending: true)
+        
+        query.getDocuments { snapshot, error in
+            guard let documents = snapshot?.documents else { return }
+            let notifications = documents.map({ Notification(dictionary: $0.data()) })
+            completion(notifications)
+        }
+    }
 }
