@@ -44,6 +44,7 @@
 		E2B363992C4FFC700027A480 /* InputTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B363982C4FFC700027A480 /* InputTextView.swift */; };
 		E2EB3A2C2C57DBF100BA3F1C /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2EB3A2B2C57DBF100BA3F1C /* NotificationCell.swift */; };
 		E2EB3A2E2C57E16800BA3F1C /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2EB3A2D2C57E16800BA3F1C /* Notification.swift */; };
+		E2EB3A302C57E4E500BA3F1C /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2EB3A2F2C57E4E500BA3F1C /* NotificationService.swift */; };
 		E2EE8FA52C4553D600296123 /* FeedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2EE8FA42C4553D600296123 /* FeedController.swift */; };
 		E2EE8FA72C4553E400296123 /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2EE8FA62C4553E400296123 /* SearchController.swift */; };
 		E2EE8FA92C4553EB00296123 /* PostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2EE8FA82C4553EB00296123 /* PostController.swift */; };
@@ -122,6 +123,7 @@
 		E2B363982C4FFC700027A480 /* InputTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputTextView.swift; sourceTree = "<group>"; };
 		E2EB3A2B2C57DBF100BA3F1C /* NotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
 		E2EB3A2D2C57E16800BA3F1C /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
+		E2EB3A2F2C57E4E500BA3F1C /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		E2EE8FA42C4553D600296123 /* FeedController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedController.swift; sourceTree = "<group>"; };
 		E2EE8FA62C4553E400296123 /* SearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
 		E2EE8FA82C4553EB00296123 /* PostController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostController.swift; sourceTree = "<group>"; };
@@ -274,6 +276,7 @@
 				E26C06712C4BED8A0048BA63 /* UserService.swift */,
 				E2F72E7F2C5139CE00380154 /* PostService.swift */,
 				E28AEFD22C553A2800713A2E /* CommentService.swift */,
+				E2EB3A2F2C57E4E500BA3F1C /* NotificationService.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -610,6 +613,7 @@
 				E28AEFD72C55432E00713A2E /* CommentViewModel.swift in Sources */,
 				E24610132C4D4C4B009DD163 /* UserCellViewModel.swift in Sources */,
 				E2EB3A2C2C57DBF100BA3F1C /* NotificationCell.swift in Sources */,
+				E2EB3A302C57E4E500BA3F1C /* NotificationService.swift in Sources */,
 				E2EE8FB12C456C3D00296123 /* Extensions.swift in Sources */,
 				E2EE8FA92C4553EB00296123 /* PostController.swift in Sources */,
 				E2F72E802C5139CE00380154 /* PostService.swift in Sources */,
