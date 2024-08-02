@@ -8,8 +8,20 @@
 import UIKit
 import SDWebImage
 
+protocol NotificationCellDelegate: AnyObject {
+    func call(_ cell: NotificationCell, wantsToFollow uid: String)
+    func call(_ cell: NotificationCell, wantsToUnfollow uid: String)
+    func call(_ cell: NotificationCell, wantsToViewPost postId: String)
+}
+
 class NotificationCell: UITableViewCell {
     // MARK: Properties
+    var viewModel: NotificationViewModel? {
+        didSet { setData() }
+    }
+    
+    weak var delegate: NotificationCellDelegate?
+    
     private let profileImageView: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFill
@@ -41,14 +53,17 @@ class NotificationCell: UITableViewCell {
         return button
     }()
     
-    private let postImageView: UIImageView = {
+    private lazy var postImageView: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFill
         iv.clipsToBounds = true
-        iv.isUserInteractionEnabled = true
         iv.backgroundColor = .systemGray
         iv.tintColor = .white
         iv.image = UIImage(systemName: "person.fill")
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(onTapPost))
+        iv.isUserInteractionEnabled = true
+        iv.addGestureRecognizer(tap)
         return iv
     }()
     
@@ -87,10 +102,33 @@ class NotificationCell: UITableViewCell {
     }
     
     private func setData() {
+        guard let viewModel = viewModel else { return }
+        
+        profileImageView.sd_setImage(with: viewModel.profileImageUrl)
+        postImageView.sd_setImage(with: viewModel.postImageUrl)
+        
+        infoLabel.attributedText = viewModel.notificationMessage
+        
+        postImageView.isHidden = viewModel.shouldHidePostImage
+        followButton.isHidden = !viewModel.shouldHidePostImage
+        
+        followButton.setTitle(viewModel.followButtonText, for: .normal)
+        followButton.backgroundColor = viewModel.followButtonBackgroundColor
+        followButton.setTitleColor(viewModel.followButtonTextColor, for: .normal)
     }
     
     // MARK: Actions
     @objc func onTapFollow() {
         print("DEBUG: onTapFollow")
+        guard let viewModel = viewModel else { return }
+        
+        delegate?.call(self, wantsToFollow: viewModel.notification.uid)
+    }
+    
+    @objc func onTapPost() {
+        print("DEBUG: onTapPost")
+        guard let viewModel = viewModel else { return }
+        
+        delegate?.call(self, wantsToViewPost: viewModel.notification.postId ?? "")
     }
 }

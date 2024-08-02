@@ -143,7 +143,7 @@ extension FeedController: FeedCellDelegate {
                 cell.likeButton.tintColor = .red
                 cell.viewModel?.post.likes = post.likes + 1
                 
-                NotificationService.shared.addNotification(toUid: post.ownerUid, fromUser: user, type: .like)
+                NotificationService.shared.addNotification(toUid: post.ownerUid, fromUser: user, type: .like, post: post)
             }
         }
     }

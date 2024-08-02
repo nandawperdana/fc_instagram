@@ -21,7 +21,6 @@ class NotificationService {
         let docRef = FirebaseReference.getReference(.Notification).document(uid).collection("user-notifications").document()
         
         var data: [String: Any] = ["timestamp": Timestamp(date: Date()), "uid": fromUser.uid, "id": docRef.documentID, "type": type.rawValue, "profileImage": fromUser.profileImage, "username": fromUser.username]
-        
         if let post = post {
             data["postId"] = post.postId
             data["postImage"] = post.imageUrl

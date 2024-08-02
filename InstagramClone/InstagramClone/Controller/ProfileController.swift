@@ -120,6 +120,8 @@ extension ProfileController: UICollectionViewDelegateFlowLayout {
 // MARK: ProfileHeaderDelegate
 extension ProfileController: ProfileHeaderDelegate {
     func header(_ header: ProfileHeader, onTapButtonFor user: User) {
+        guard let tab = tabBarController as? MainTabController else { return }
+        guard let currentUser = tab.user else { return }
         
         if user.isCurrentUser {
             print("DEBUG: Edit Profile")
@@ -131,6 +133,8 @@ extension ProfileController: ProfileHeaderDelegate {
             } else {
                 UserService.shared.follow(uid: user.uid) { error in
                     self.user.isFollowed = true
+                    
+                    NotificationService.shared.addNotification(toUid: user.uid, fromUser: currentUser, type: .follow)
                 }
             }
         }
