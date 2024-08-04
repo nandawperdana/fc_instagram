@@ -57,7 +57,13 @@ class FeedController: UICollectionViewController {
     private func fetchPosts() {
         guard post == nil else { return }
         
-        PostService.shared.fetchPosts { posts in
+//        PostService.shared.fetchPosts { posts in
+//            self.posts = posts
+//            self.isUserLikedPost()
+//            self.collectionView.refreshControl?.endRefreshing()
+//        }
+        
+        PostService.shared.fetchFeedPosts { posts in
             self.posts = posts
             self.isUserLikedPost()
             self.collectionView.refreshControl?.endRefreshing()

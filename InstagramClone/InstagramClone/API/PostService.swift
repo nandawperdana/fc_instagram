@@ -46,7 +46,7 @@ class PostService {
         }
     }
     
-    func fetchPost(with postId: String, completion: @escaping (Post) -> Void) {
+    func fetchPost(with postId: String, completion: @escaping (Post?) -> Void) {
         FirebaseReference.getReference(.Post).document(postId).getDocument { snapshot, error in
             guard let snapshot = snapshot else { return }
             guard let data = snapshot.data() else { return }
@@ -90,6 +90,59 @@ class PostService {
         FirebaseReference.getReference(.User).document(uid).collection("likes").document(post.postId).getDocument { snapshot, error in
             guard let didLike = snapshot?.exists else { return }
             completion(didLike)
+        }
+    }
+    
+    func updateUserFeed(user: User) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        
+        let query = FirebaseReference.getReference(.Post).whereField("ownerUid", isEqualTo: user.uid)
+        query.getDocuments { snapshot, eror in
+            guard let documents = snapshot?.documents else { return }
+            
+            let docIds = documents.map({ $0.documentID })
+            
+            docIds.forEach { id in
+                FirebaseReference.getReference(.User).document(uid).collection("feeds").document(id).setData([:])
+            }
+        }
+    }
+    
+    func removeUserFeed(user: User) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        
+        FirebaseReference.getReference(.Post).whereField("ownerUid", isEqualTo: user.uid).getDocuments { snapshot, error in
+            for document in snapshot!.documents {
+                FirebaseReference.getReference(.User).document(uid).collection("feeds").document(document.documentID).delete()
+            }
+        }
+    }
+    
+    func fetchFeedPosts(completion: @escaping([Post]) -> Void) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        
+        var posts = [Post]()
+        
+        FirebaseReference.getReference(.User).document(uid).collection("feeds").getDocuments { snapshot, error in
+            
+            if let _ = error {
+                completion(posts)
+            }
+            
+            guard let snapshot = snapshot else { return }
+            
+            if snapshot.documents.isEmpty {
+                completion(posts)
+            }
+            
+            snapshot.documents.forEach({ document in
+                PostService.shared.fetchPost(with: document.documentID) { post in
+                    guard let post = post else { return }
+                    
+                    posts.append(post)
+                    completion(posts)
+                }
+            })
         }
     }
 }
