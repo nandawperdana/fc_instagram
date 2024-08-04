@@ -64,14 +64,6 @@ class ProfileController: UICollectionViewController {
         collectionView.register(ProfileCell.self, forCellWithReuseIdentifier: "ProfileCell")
         collectionView.register(ProfileHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "ProfileHeader")
     }
-    
-    func showEditProfileController() {
-        let controller = EditProfileController(user: user)
-        controller.delegate = self
-        let nav = UINavigationController(rootViewController: controller)
-        nav.modalPresentationStyle = .fullScreen
-        present(nav, animated: true)
-    }
 }
 
 // MARK: UICollectionViewDataSource
@@ -132,7 +124,7 @@ extension ProfileController: ProfileHeaderDelegate {
         guard let currentUser = tab.user else { return }
         
         if user.isCurrentUser {
-            showEditProfileController()
+            print("DEBUG: Edit Profile")
         } else {
             if user.isFollowed {
                 UserService.shared.unFollow(uid: user.uid) { error in
@@ -150,14 +142,5 @@ extension ProfileController: ProfileHeaderDelegate {
                 }
             }
         }
-    }
-}
-
-// MARK: - EditProfileControllerDelegate
-
-extension ProfileController: EditProfileControllerDelegate {
-    func controller(_ controller: EditProfileController, wantsToUpdate user: User) {
-        controller.dismiss(animated: true, completion: nil)
-        self.user = user
     }
 }
