@@ -113,12 +113,22 @@ extension FeedController: UICollectionViewDelegateFlowLayout {
 }
 
 extension FeedController: FeedCellDelegate {
+    func call(_ cell: FeedCell, showProfileFor uid: String) {
+        UserService.shared.fetchUser(withUid: uid) { user in
+            let controller = ProfileController(user: user)
+            self.navigationController?.pushViewController(controller, animated: true)
+        }
+    }
+    
     func call(_ cell: FeedCell, showCommentsFor post: Post) {
         let controller = CommentController(post: post)
         navigationController?.pushViewController(controller, animated: true)
     }
     
     func call(_ cell: FeedCell, didLike post: Post) {
+        guard let tab = tabBarController as? MainTabController else { return }
+        guard let user = tab.user else { return }
+        
         cell.viewModel?.post.didLike.toggle()
         
         if post.didLike {
@@ -132,6 +142,8 @@ extension FeedController: FeedCellDelegate {
                 cell.likeButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
                 cell.likeButton.tintColor = .red
                 cell.viewModel?.post.likes = post.likes + 1
+                
+                NotificationService.shared.addNotification(toUid: post.ownerUid, fromUser: user, type: .like, post: post)
             }
         }
     }

@@ -104,6 +104,8 @@ extension CommentController: CustomInputAccessoryViewDelegate {
         
         CommentService.shared.uploadComment(comment: text, post: post, user: currentUser) { error in
             inputView.clearInputText()
+            
+            NotificationService.shared.addNotification(toUid: self.post.ownerUid, fromUser: currentUser, type: .comment, post: self.post)
         }
     }
 }
