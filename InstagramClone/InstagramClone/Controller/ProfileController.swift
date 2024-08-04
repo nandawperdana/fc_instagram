@@ -129,12 +129,16 @@ extension ProfileController: ProfileHeaderDelegate {
             if user.isFollowed {
                 UserService.shared.unFollow(uid: user.uid) { error in
                     self.user.isFollowed = false
+                    
+                    PostService.shared.removeUserFeed(user: user)
                 }
             } else {
                 UserService.shared.follow(uid: user.uid) { error in
                     self.user.isFollowed = true
                     
                     NotificationService.shared.addNotification(toUid: user.uid, fromUser: currentUser, type: .follow)
+                    
+                    PostService.shared.updateUserFeed(user: user)
                 }
             }
         }
