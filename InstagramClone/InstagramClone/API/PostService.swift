@@ -46,6 +46,16 @@ class PostService {
         }
     }
     
+    func fetchPost(with postId: String, completion: @escaping (Post) -> Void) {
+        FirebaseReference.getReference(.Post).document(postId).getDocument { snapshot, error in
+            guard let snapshot = snapshot else { return }
+            guard let data = snapshot.data() else { return }
+            
+            let post = Post(postId: postId, dictionary: data)
+            completion(post)
+        }
+    }
+    
     func likePost(post: Post, completion: @escaping(FirestoreCompletion)) {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         

@@ -119,14 +119,17 @@ class NotificationCell: UITableViewCell {
     
     // MARK: Actions
     @objc func onTapFollow() {
-        print("DEBUG: onTapFollow")
         guard let viewModel = viewModel else { return }
         
-        delegate?.call(self, wantsToFollow: viewModel.notification.uid)
+        if viewModel.notification.userIsFollowed {
+            delegate?.call(self, wantsToUnfollow: viewModel.notification.uid)
+        } else {
+            delegate?.call(self, wantsToFollow: viewModel.notification.uid)
+        }
+        
     }
     
     @objc func onTapPost() {
-        print("DEBUG: onTapPost")
         guard let viewModel = viewModel else { return }
         
         delegate?.call(self, wantsToViewPost: viewModel.notification.postId ?? "")

@@ -16,6 +16,8 @@ class NotificationController: UITableViewController {
         didSet { tableView.reloadData() }
     }
     
+    private let refresher = UIRefreshControl()
+    
     // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +34,9 @@ class NotificationController: UITableViewController {
         tableView.rowHeight = 60
         tableView.separatorStyle = .none
         tableView.register(NotificationCell.self, forCellReuseIdentifier: reuseIdentifier)
+        
+        refresher.addTarget(self, action: #selector(onRefresh), for: .valueChanged)
+        tableView.refreshControl = refresher
     }
     
     // MARK: API
@@ -53,6 +58,13 @@ class NotificationController: UITableViewController {
             }
         }
     }
+    
+    // MARK: Actions
+    @objc func onRefresh() {
+        notifications.removeAll()
+        fetchNotifications()
+        refresher.endRefreshing()
+    }
 }
 
 // MARK: UITableViewDataSource
@@ -72,20 +84,31 @@ extension NotificationController {
 // MARK: UITableViewDelegate
 extension NotificationController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("DEBUG: Select row \(indexPath.row)")
+        UserService.shared.fetchUser(withUid: notifications[indexPath.row].uid) { user in
+            let controller = ProfileController(user: user)
+            self.navigationController?.pushViewController(controller, animated: true)
+        }
     }
 }
 
 extension NotificationController: NotificationCellDelegate {
     func call(_ cell: NotificationCell, wantsToFollow uid: String) {
-        
+        UserService.shared.follow(uid: uid) { error in
+            cell.viewModel?.notification.userIsFollowed.toggle()
+        }
     }
     
     func call(_ cell: NotificationCell, wantsToUnfollow uid: String) {
-        
+        UserService.shared.unFollow(uid: uid) { error in
+            cell.viewModel?.notification.userIsFollowed.toggle()
+        }
     }
     
     func call(_ cell: NotificationCell, wantsToViewPost postId: String) {
-        
+        PostService.shared.fetchPost(with: postId) { post in
+            let controller = FeedController(collectionViewLayout: UICollectionViewFlowLayout())
+            controller.post = post
+            self.navigationController?.pushViewController(controller, animated: true)
+        }
     }
 }
