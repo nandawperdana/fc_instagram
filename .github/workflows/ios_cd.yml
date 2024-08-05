@@ -6,10 +6,13 @@ on:
       - develop
 
 jobs:
-  build-and-release:
+  test:
     runs-on: macos-latest
 
     steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
     - name: Running test
 	run: xcodebuild test --workspace InstagramClone.xcworkspace -scheme InstagramClone
 	working-directory: ./InstagramClone
