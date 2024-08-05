@@ -13,6 +13,15 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
 
+    - name: Install CocoaPods via Homebrew
+	run: |
+	  brew update
+	  rew install cocoa pods
+
+    - name: Install CocoaPods dependencies
+	run: pod install
+	working-directory: ./InstagramClone
+
     - name: Run tests
 	run: xcodebuild test -workspace InstagramClone.xcworkspace -scheme InstagramClone -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 15,OS=latest' ONLY_ACTIVE_ARCH=YES -quiet
 	working-directory: ./InstagramClone
