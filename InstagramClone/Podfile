@@ -21,8 +21,4 @@ pod 'ActiveLabel'
     # Pods for testing
   end
 
-  target 'InstagramCloneUITests' do
-    # Pods for testing
-  end
-
 end
